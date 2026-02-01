@@ -21,13 +21,13 @@ body{
   padding:35px;
   border-radius:25px;
   text-align:center;
-  width:320px;
+  width:330px;
   box-shadow:0 15px 30px rgba(0,0,0,0.25);
   z-index:2;
 }
 
 h2{ color:#ff4d6d; }
-p{ font-size:17px; }
+p{ font-size:17px; line-height:1.5; }
 
 button{
   background:#ff4d6d;
@@ -58,66 +58,81 @@ button{
 
 <body>
 
-<!-- Background Music (YouTube) -->
-<iframe id="song"
-  width="0"
-  height="0"
-  src="https://www.youtube.com/embed/gkQx5m2KHAQ?enablejsapi=1&autoplay=0&loop=1&playlist=gkQx5m2KHAQ"
-  frameborder="0"
-  allow="autoplay">
-</iframe>
+<!-- Background Music -->
+<iframe id="song" width="0" height="0"
+src="https://www.youtube.com/embed/gkQx5m2KHAQ?enablejsapi=1&autoplay=0&loop=1&playlist=gkQx5m2KHAQ"
+frameborder="0" allow="autoplay"></iframe>
 
 <div class="card">
-  <h2>Hey Tree 🫶🏻🌸</h2>
-  <p>I made this just for you 💕</p>
-  <button id="startBtn" onclick="start()">Tap for Surprise 💖</button>
 
-  <div id="msg1" class="hidden">
-    <p>
-      You are not just special…  
-      you are **my favorite feeling** ✨
-    </p>
-    <button onclick="next1()">Next 🌸</button>
+  <div id="slide0">
+    <h2>Hey Tree 🫶🏻🌸</h2>
+    <p>I made something special… just for you 💕</p>
+    <button onclick="start()">Tap Slowly 💖</button>
   </div>
 
-  <div id="msg2" class="hidden">
+  <div id="slide1" class="hidden">
     <p>
-      Every smile of yours  
-      makes my heart skip a beat 💓  
-      and every moment with you  
-      feels like magic 🌙
+      From the moment you came into my life…  
+      things started feeling lighter ✨
     </p>
-    <button onclick="next2()">One More 💞</button>
+    <button onclick="next(1)">Next 🌸</button>
   </div>
 
-  <div id="msg3" class="hidden">
+  <div id="slide2" class="hidden">
+    <p>
+      Your smile?  
+      It’s my favorite view 💓  
+      Your voice?  
+      My favorite sound 🎶
+    </p>
+    <button onclick="next(2)">Next 💞</button>
+  </div>
+
+  <div id="slide3" class="hidden">
+    <p>
+      With you…  
+      even silence feels beautiful 🌙  
+      even ordinary moments feel special ✨
+    </p>
+    <button onclick="next(3)">Next ❤️</button>
+  </div>
+
+  <div id="slide4" class="hidden">
+    <p>
+      You are my comfort 🫶🏻  
+      my safe place 🌸  
+      my favorite person 💖
+    </p>
+    <button onclick="next(4)">Almost There 😌</button>
+  </div>
+
+  <div id="slide5" class="hidden">
     <h2>Tree ❤️</h2>
     <p>
       I choose you.  
-      Today. Tomorrow.  
-      Always. 🫶🏻  
+      Not just today…  
+      but every day.  
       <br><br>
-      I love you more than you know 😘
+      Today. Tomorrow. Always. 🫶🏻  
+      <br><br>
+      I love you endlessly 😘
     </p>
   </div>
+
 </div>
 
 <script>
 function start(){
-  document.getElementById("startBtn").style.display="none";
-  document.getElementById("msg1").style.display="block";
+  document.getElementById("slide0").style.display="none";
+  document.getElementById("slide1").style.display="block";
   playMusic();
   hearts();
 }
 
-function next1(){
-  document.getElementById("msg1").style.display="none";
-  document.getElementById("msg2").style.display="block";
-}
-
-function next2(){
-  document.getElementById("msg2").style.display="none";
-  document.getElementById("msg3").style.display="block";
+function next(n){
+  document.getElementById("slide"+n).style.display="none";
+  document.getElementById("slide"+(n+1)).style.display="block";
 }
 
 function hearts(){
@@ -133,9 +148,14 @@ function hearts(){
 }
 
 function playMusic(){
-  const iframe = document.getElementById("song").contentWindow;
+  const iframe=document.getElementById("song").contentWindow;
   iframe.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
 }
+</script>
+
+</body>
+</html>
+
 </script>
 
 </body>
